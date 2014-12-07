@@ -28,7 +28,7 @@ A C# Wrapper for the Velleman K8055 (SDK v4) DLL that uses events for digital an
 6. Add the DLL files to your project and change the associated property "Copy to Output Directory" to "Copy if newer" or "Copy always".
 7. Check the examples below to see how the DLL can be used.
 
-\* Copying the dll file 4 times is needed to be able to connect to multiple devices at ones without having to open and close connections each time.
+\* Copying the dll file 4 times is needed to be able to connect to multiple devices at once without having to open and close connections each time.
 
 ##Examples
 ###Connecting to devices
@@ -43,7 +43,7 @@ kcCommunicatior.StopCommunication(0); // This can be any of the available device
 ````
 
 ###Listening for connection errors
-It is adviced to do this before calling the `StartCommunication()` method.
+It is advised to do this before calling the `StartCommunication()` method.
 
 *Register the event handler:*
 ````csharp
@@ -109,7 +109,7 @@ kcCommunicator.AddDigitalOutput(0, 1, true);
 ####Adding multiple digital outputs to the queue
 
 #####Method one:
-You can add many outputs as you want, they are added to the queue in the same order as they are added to the list.
+You can add as many outputs as you want, they are added to the queue in the same order as they are added to the list.
 ````csharp
 kcCommunicator.AddDigitalOutput(new List<DigitalIO>()
 {
