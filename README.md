@@ -47,9 +47,9 @@ _kcCommunicator.DigitalInput += HandleInput;
 ````csharp
 private void HandleInput(object oSender = null, DigitalInputEventArgs dieaEventArguments = null)
 {
-    Console.WriteLine("Device: " + dieaEventArguments.Input.Device);
+    Console.WriteLine();
+    Console.WriteLine("Device: " + dieaEventArguments.Input.Device.ToString());
     Console.WriteLine("Port: " + dieaEventArguments.Input.Port.ToString());
     Console.WriteLine("Value: " + dieaEventArguments.Input.Value.ToString());
-    Console.WriteLine();
 }
 ````
