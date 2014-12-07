@@ -7,7 +7,7 @@ A C# Wrapper for the Velleman K8055 (SDK v4) DLL that uses events for digital an
 3. Check the examples below to see how the DLL can be used.
 
 ##Examples
-**Connecting to devices**
+###Connecting to devices
 ```csharp
 K8055Communicator kcCommunicator = new K8055Communicator();
 
@@ -18,7 +18,7 @@ kcCommunicator.StartCommunication(0); // This can be any of the available device
 kcCommunicatior.StopCommunication(0); // This can be any of the available devices (0, 1, 2 or 3)
 ````
 
-**Listening for connection errors**  
+###Listening for connection errors
 It is adviced to do this before calling the `StartCommunication()` method.
 
 *Register the event handler:*
@@ -34,7 +34,7 @@ private void HandleDeviceConnectionError(object oSender, EventArgs eaEventArgume
 }
 ````
 
-**Listening for Digital input**  
+###Listening for Digital input
 > **NOTE:** This event is triggered for input on all devices you'll need 
 > to check the event arguments to check wich device triggered the event.
 
