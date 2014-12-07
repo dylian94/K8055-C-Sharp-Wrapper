@@ -33,7 +33,7 @@ It is adviced to do this before calling the `StartCommunication()` method.
 
 *Register the event handler:*
 ````csharp
-_kcCommunicator.Error += HandleDeviceConnectionError;
+kcCommunicator.Error += HandleDeviceConnectionError;
 ````
 
 *Handle the event (showing a messagebox to indicate to the user that the device may not be connected):*
@@ -50,7 +50,7 @@ private void HandleDeviceConnectionError(object oSender, EventArgs eaEventArgume
 
 *Register the event handler:*
 ````csharp
-_kcCommunicator.DigitalInput += HandleInput;
+kcCommunicator.DigitalInput += HandleInput;
 ````
 
 *Handle the event (logging the input to the console output):*
@@ -70,5 +70,5 @@ private void HandleInput(object oSender = null, DigitalInputEventArgs dieaEventA
 > outputs to the queue. The output is written to the device one channel at a time (the 
 > current version of the library does not use the K8055 SDK provided `WriteAllDigital()` method.
 
-**Adding a single digital output to the queue**
+**Adding a single digital output to the queue**  
 __*MORE COMMING SOON*__
