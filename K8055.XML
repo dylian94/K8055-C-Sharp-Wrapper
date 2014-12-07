@@ -1,0 +1,455 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>K8055</name>
+    </assembly>
+    <members>
+        <member name="M:K8055.K8055.#ctor(System.Int32)">
+            <summary>
+            Initializes a new K8055 object for the specified device.
+            </summary>
+            <param name="iDevice"></param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Gets thrown when an invalid device channel was given.
+            </exception>
+        </member>
+        <member name="M:K8055.K8055.CallDeviceMethod(System.String)">
+            <summary>
+            Calls a method on the earlier specified device.
+            </summary>
+            <param name="sMethodName">The method to call</param>
+            <returns>The output of the chosen method</returns>
+        </member>
+        <member name="M:K8055.K8055.CallDeviceMethod(System.String,System.Int32)">
+            <summary>
+            Calls a method on the earlier specified device with the given parameter.
+            </summary>
+            <param name="sMethodName">The method to call</param>
+            <param name="iParameter">The parameter to pass</param>
+            <returns>The output of the chosen method</returns>
+        </member>
+        <member name="M:K8055.K8055.CallDeviceMethod(System.String,System.Int32,System.Int32)">
+            <summary>
+            Calls a method on the earlier specified device with the given parameters.
+            </summary>
+            <param name="sMethodName">The method to call</param>
+            <param name="iParameter1">The first parameter to pass</param>
+            <param name="iParameter2">The second parameter to pass</param>
+            <returns>The output of the chosen method</returns>
+        </member>
+        <member name="M:K8055.K8055.CallDeviceMethod(System.String,System.Int32@,System.Int32@)">
+            <summary>
+            Calls a method on the earlier specified device with the given parameters.
+            </summary>
+            <param name="sMethodName">The method to call</param>
+            <param name="iParameter1">The first parameter to pass</param>
+            <param name="iParameter2">The second parameter to pass</param>
+            <returns>The output of the chosen method</returns>
+        </member>
+        <member name="M:K8055.K8055.OpenDevice(System.Int32)">
+            <summary>
+            Opens the communication link to the K8055 card. Loads the drivers needed to communicate via the USB port.
+            This procedure must be performed before any attempts to communicate with the K8055 card. This function can
+            also be used to selects the active K8055 card to read and write the data. All the communication routines
+            after this function call are addressed to this card until the other card is selected by this function call. 
+            </summary>
+            <param name="iCardAddress">
+            Value between 0 and 3 which corresponds to the jumper (SK5, SK6) setting on the K8055 board.
+            </param>
+            <returns>
+            If succeeded the return value will be the card address read from the K8055 hardware. 
+            Return value -1 indicates that K8055 card was not found.
+            </returns>
+        </member>
+        <member name="M:K8055.K8055.SearchDevices">
+            <summary>
+            Using this function all the K8055 cards can be opened. No need to use OpenDevice. 
+            This function returns all the connected K8055 devices on the computer. The returned value is a bit field.
+            
+            Returned value:
+            • Bin 0000, Dec 0 : No devices was found 
+            • Bin 0001, Dec 1 : Card address 0 was found. 
+            • Bin 0010, Dec 2 : Card address 1 was found. 
+            • Bin 0100, Dec 4 : Card address 2 was found. 
+            • Bin 1000, Dec 8 : Card address 3 was found. 
+            
+            Example : return value 9 = devices with address 0 and 3 are connected.
+            </summary>
+            <returns>
+            • Bin 0000, Dec 0 : No devices was found 
+            • Bin 0001, Dec 1 : Card address 0 was found. 
+            • Bin 0010, Dec 2 : Card address 1 was found. 
+            • Bin 0100, Dec 4 : Card address 2 was found. 
+            • Bin 1000, Dec 8 : Card address 3 was found. 
+            </returns>
+        </member>
+        <member name="M:K8055.K8055.SetCurrentDevice(System.Int32)">
+            <summary>
+            The function set the current controlled device. 
+            The returned value is the device address, if this value is –1 no device with the address parameter was found.  
+            </summary>
+            <param name="iCardAddress">
+            Value 0 to 3, which corresponds to the device address.
+            </param>
+            <returns>
+            The returned value is the device address, if this value is –1 no device with the address parameter was found.
+            </returns>
+        </member>
+        <member name="M:K8055.K8055.CloseDevice">
+            <summary>
+            Unloads the communication routines for K8055 cards and unloads the driver needed to communicate via the USB port.
+            This is the last action of the application program before termination.  
+            </summary>
+        </member>
+        <member name="M:K8055.K8055.ReadAnalogChannel(System.Int32)">
+            <summary>
+            The input voltage of the selected 8-bit Analog to Digital converter channel is converted to a value which lies between 0 and 255. 
+            </summary>
+            <param name="iChannel">
+            Value between 1 and 2 which corresponds to the AD channel whose status is to be read. 
+            </param>
+            <returns>
+            The corresponding Analog to Digital Converter data is read. 
+            </returns>
+        </member>
+        <member name="M:K8055.K8055.ReadAllAnalog(System.Int32@,System.Int32@)">
+            <summary>
+            The status of both Analog to Digital Converters are read to an array of long integers.  
+            </summary>
+            <param name="iData1">
+            Reference to the integer (32-bit) where the data will be read.
+            </param>
+            <param name="iData2">
+            Reference to the integer (32-bit) where the data will be read.</param>
+        </member>
+        <member name="M:K8055.K8055.OutputAnalogChannel(System.Int32,System.Int32)">
+            <summary>
+            The indicated 8-bit Digital to Analog Converter channel is altered according to the new data. This
+            means that the data corresponds to a specific voltage. The value 0 corresponds to a minimum output 
+            voltage (0 Volt) and the value 255 corresponds to a maximum output voltage (+5V). A value of 'Data'
+            lying in between these extremes can be translated by the following formula : Data / 255 x 5V. 
+            </summary>
+            <param name="iChannel">
+            Value between 1 and 2 which corresponds to the 8-bit DA channel number whose data is to be set.
+            </param>
+            <param name="iData">
+            Value between 0 and 255 which is to be sent to the 8-bit Digital to Analog Converter.
+            </param>
+        </member>
+        <member name="M:K8055.K8055.OutputAllAnalog(System.Int32,System.Int32)">
+            <summary>
+            The indicated 8-bit Digital to Analog Converter channel is altered according to the new data. This
+            means that the data corresponds to a specific voltage. The value 0 corresponds to a minimum output 
+            voltage (0 Volt) and the value 255 corresponds to a maximum output voltage (+5V). A value of 'Data' 
+            lying in between these extremes can be translated by the following formula : Data / 255 x 5V. 
+            </summary>
+            <param name="iData1">Value between 0 and 255 which is to be sent to the 8-bit Digital to Analog Converter.</param>
+            <param name="iData2">Value between 0 and 255 which is to be sent to the 8-bit Digital to Analog Converter.</param>
+        </member>
+        <member name="M:K8055.K8055.ClearAnalogChannel(System.Int32)">
+            <summary>
+            The selected DA-channel is set to minimum output voltage (0 Volt).
+            </summary>
+            <param name="iChannel">
+            Value between 1 and 2 which corresponds to the 8-bit DA channel number in which the data is to be erased.
+            </param>
+        </member>
+        <member name="M:K8055.K8055.ClearAllAnalog">
+            <summary>
+            Both DA-channels are set to minimum output voltage (0 Volt).
+            </summary>
+        </member>
+        <member name="M:K8055.K8055.SetAnalogChannel(System.Int32)">
+            <summary>
+            The selected 8-bit Digital to Analog Converter channel is set to maximum output voltage. 
+            </summary>
+            <param name="iChannel">
+            Value between 1 and 2 which corresponds to the 8-bit DA channel number in which the data is to be set to maximum. 
+            </param>
+        </member>
+        <member name="M:K8055.K8055.SetAllAnalog">
+            <summary>
+            All channels of the 8-bit Digital to Analog Converters are set to maximum output voltage.
+            </summary>
+        </member>
+        <member name="M:K8055.K8055.WriteAllDigital(System.Int32)">
+            <summary>
+            The channels of the digital output port are updated with the status of the corresponding bits in the data
+            parameter. A high (1) level means that the microcontroller IC3 output is set, and a low (0) level means
+            that the output is cleared. 
+            </summary>
+            <param name="iData">
+            Value between 0 and 255 that is sent to the output port (8 channels). 
+            </param>
+        </member>
+        <member name="M:K8055.K8055.ClearDigitalChannel(System.Int32)">
+            <summary>
+            The selected channel is cleared. 
+            </summary>
+            <param name="iChannel">
+            Value between 1 and 8 which corresponds to the output channel that is to be cleared.
+            </param>
+        </member>
+        <member name="M:K8055.K8055.ClearAllDigital">
+            <summary>
+            All digital outputs are cleared.
+            </summary>
+        </member>
+        <member name="M:K8055.K8055.SetDigitalChannel(System.Int32)">
+            <summary>
+            The selected digital output channel is set. 
+            </summary>
+            <param name="iChannel">
+            Value between 1 and 8 which corresponds to the output channel that is to be set. 
+            </param>
+        </member>
+        <member name="M:K8055.K8055.SetAllDigital">
+            <summary>
+            All the digital output channels are set.
+            </summary>
+        </member>
+        <member name="M:K8055.K8055.ReadDigitalChannel(System.Int32)">
+            <summary>
+            The status of the selected Input channel is read. 
+            </summary>
+            <param name="iChannel">
+            Value between 1 and 5 which corresponds to the input channel whose status is to be read. 
+            </param>
+            <returns>
+            TRUE means that the channel has been set and FALSE means that it has been cleared. 
+            </returns>
+        </member>
+        <member name="M:K8055.K8055.ReadAllDigital">
+            <summary>
+            The function returns the status of the digital inputs.
+            </summary>
+            <returns>
+            The 5 LSB correspond to the status of the digital input channels. A high (1) means that the
+            channel is HIGH, a low (0) means that the channel is LOW. 
+            </returns>
+        </member>
+        <member name="M:K8055.K8055.ResetCounter(System.Int32)">
+            <summary>
+            The selected pulse counter is reset. 
+            </summary>
+            <param name="iCounterNr">
+            Value 1 or 2, which corresponds to the counter to be reset. 
+            </param>
+        </member>
+        <member name="M:K8055.K8055.ReadCounter(System.Int32)">
+            <summary>
+            The function returns the status of the selected 16 bit pulse counter. 
+            The counter number 1 counts the pulses fed to the input I1 and the counter number 2 counts the
+            pulses fed to the input I2.
+            </summary>
+            <param name="iCounterNr">
+            Value 1 or 2, which corresponds to the counter to be read.
+            </param>
+            <returns>
+            The content of the 16 bit pulse counter. 
+            </returns>
+        </member>
+        <member name="M:K8055.K8055.SetCounterDebounceTime(System.Int32,System.Int32)">
+            <summary>
+            The counter inputs are debounced in the software to prevent false triggering when mechanical
+            switches or relay inputs are used. The debounce time is equal for both falling and rising edges. The
+            default debounce time is 2ms. This means the counter input must be stable for at least 2ms before it is
+            recognised, giving the maximum count rate of about 200 counts per second.
+            If the debounce time is set to 0, then the maximum counting rate is about 2000 counts per second. 
+            </summary>
+            <param name="iCounterNr">
+            Value 1 or 2, which corresponds to the counter to be set.
+            </param>
+            <param name="iDebounceTime">
+            Debounce time for the pulse counter.
+            The DebounceTime value corresponds to the debounce time in milliseconds (ms) to be set for the
+            pulse counter. Debounce time value may vary between 0 and 5000.  
+            </param>
+        </member>
+        <member name="T:K8055.IO">
+            <summary>
+            The general K8055 IO class
+            </summary>
+        </member>
+        <member name="P:K8055.IO.Device">
+            <summary>
+            The device associated to this IO
+            </summary>
+        </member>
+        <member name="P:K8055.IO.Port">
+            <summary>
+            The port associated to this IO
+            </summary>
+        </member>
+        <member name="T:K8055.DigitalIO">
+            <summary>
+            The Digital K8055 IO class
+            </summary>
+        </member>
+        <member name="P:K8055.DigitalIO.Value">
+            <summary>
+            The value associated to this IO
+            </summary>
+        </member>
+        <member name="T:K8055.AnalogIO">
+            <summary>
+            The Analog K8055 IO class
+            </summary>
+        </member>
+        <member name="P:K8055.AnalogIO.Value">
+            <summary>
+            The value associated to this IO
+            </summary>
+        </member>
+        <member name="M:K8055.K8055Communicator.#ctor">
+            <summary>
+            The constructor for the K8055 Communicator
+            </summary>
+        </member>
+        <member name="M:K8055.K8055Communicator.CommunicateWithDevice(System.Int32)">
+            <summary>
+            Asynchronous method that communicates with the specified device
+            
+            When the value of one of the Digital or Anolog inputs changes an event is fired.
+            The output queue will be written to the device in order of addition.
+            </summary>
+            <param name="iDevice">The channel of the device the communicate with</param>
+        </member>
+        <member name="M:K8055.K8055Communicator.StartCommunication(System.Int32)">
+            <summary>
+            This method starts the communication with the specified device
+            </summary>
+            <param name="iDevice">
+            The channel number of the device to communicate with (0 till 3)
+            </param>
+            <returns>
+            True if communication with the device has started,
+            false if the communication was already started or an invalid channel number was given
+            </returns>
+        </member>
+        <member name="M:K8055.K8055Communicator.StopCommunication(System.Int32)">
+            <summary>
+            This method stops the communication with the specified device
+            </summary>
+            <param name="iDevice">
+            The channel number of the device to stop communication with (0 till 3)
+            </param>
+            <returns>
+            True if communication with the device has been stopped,
+            false if an invalid channel number was given
+            </returns>
+        </member>
+        <member name="M:K8055.K8055Communicator.AddDigitalOutput(K8055.DigitalIO)">
+            <summary>
+            This method adds digital output to the device queue
+            </summary>
+            <param name="dioOutput">
+            The digital output to add to the queue
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            This exception is thrown when the device channel or port number specified in the output is invalid
+            </exception>
+        </member>
+        <member name="M:K8055.K8055Communicator.AddDigitalOutput(System.Collections.Generic.List{K8055.DigitalIO})">
+            <summary>
+            This method adds a list of digital output to the device queue
+            </summary>
+            <param name="ldioOutput">
+            The list with digital output to add to the queue
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            This exception is thrown when the device channel or port number specified in one of the outputs is invalid
+            </exception>
+        </member>
+        <member name="M:K8055.K8055Communicator.AddDigitalOutput(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            This method adds digital output to the device queue
+            </summary>
+            <param name="iDevice">
+            The device channel
+            </param>
+            <param name="iPort">
+            The port number
+            </param>
+            <param name="bValue">
+            The wanted value
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            This exception is thrown when the device channel or port number specified in the output is invalid
+            </exception>
+        </member>
+        <member name="M:K8055.K8055Communicator.AddDigitalOutput(System.Int32,System.Nullable{System.Boolean}[])">
+            <summary>
+            This method adds multiple digital outputs to the device queue
+            </summary>
+            <param name="iDevice">
+            The device channel
+            </param>
+            <param name="bValues">
+            A bool array (size 8) with the wanted values for the digital outputs (a null value means not changing the output)
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            This exception is thrown when the device channel or port number specified in one of the outputs is invalid
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            This exception is thrown when the given array of values has a wrong size
+            </exception>
+        </member>
+        <member name="M:K8055.K8055Communicator.AddAnalogOutput(K8055.AnalogIO)">
+            <summary>
+            This method adds analog output to the device queue
+            </summary>
+            <param name="aioOutput">
+            The analog output to add to the queue
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            This exception is thrown when the device channel, port number or value specified in the output is invalid
+            </exception>
+        </member>
+        <member name="M:K8055.K8055Communicator.AddAnalogOutput(System.Collections.Generic.List{K8055.AnalogIO})">
+            <summary>
+            This method adds a list of analog output to the device queue
+            </summary>
+            <param name="ldioOutput">
+            The list with analog output to add to the queue
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            This exception is thrown when the device channel, port number or value specified in one of the outputs is invalid
+            </exception>
+        </member>
+        <member name="M:K8055.K8055Communicator.AddAnalogOutput(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            This method adds analog output to the device queue
+            </summary>
+            <param name="iDevice">
+            The device channel
+            </param>
+            <param name="iPort">
+            The port number
+            </param>
+            <param name="iValue">
+            The wanted value
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            This exception is thrown when the device channel, port number or value specified in the output is invalid
+            </exception>
+        </member>
+        <member name="M:K8055.K8055Communicator.AddAnalogOutput(System.Int32,System.Int32[])">
+            <summary>
+            This method adds multiple digital outputs to the device queue
+            </summary>
+            <param name="iDevice">
+            The device channel
+            </param>
+            <param name="bValues">
+            A bool array (size 2) with the wanted values for the analog outputs
+            </param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            This exception is thrown when the device channel, port number or value specified in one of the outputs is invalid
+            </exception>
+            <exception cref="T:System.ArgumentException">
+            This exception is thrown when the given array of values has a wrong size
+            </exception>
+        </member>
+    </members>
+</doc>
