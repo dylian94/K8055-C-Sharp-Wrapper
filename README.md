@@ -26,10 +26,30 @@ It is adviced to do this before calling the `StartCommunication()` method.
 _kcCommunicator.Error += HandleDeviceConnectionError;
 ````
 
-*Handle the event (showing a messagebox to indicate to the user that the device may not be connected:*
+*Handle the event (showing a messagebox to indicate to the user that the device may not be connected):*
 ````csharp
 private void HandleDeviceConnectionError(object oSender, EventArgs eaEventArguments)
 {
     MessageBox.Show("Device connection failed!");
+}
+````
+
+**Listening for Digital input**  
+> **NOTE:** This event is triggered for input on all devices you'll need 
+> to check the event arguments to check wich device triggered the event.
+
+*Register the event handler*
+````csharp
+_kcCommunicator.DigitalInput += HandleInput;
+````
+
+*Handle the event (logging the input to the console output)*
+````csharp
+private void HandleInput(object oSender = null, DigitalInputEventArgs dieaEventArguments = null)
+{
+    Console.Write("Device: " + dieaEventArguments.Input.Device);
+    Console.Write(" | Port: " + dieaEventArguments.Input.Port.ToString());
+    Console.Write(" | Value: " + dieaEventArguments.Input.Value.ToString());
+    Console.Write("\r\n");
 }
 ````
