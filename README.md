@@ -38,12 +38,12 @@ private void HandleDeviceConnectionError(object oSender, EventArgs eaEventArgume
 > **NOTE:** This event is triggered for input on all devices you'll need 
 > to check the event arguments to check wich device triggered the event.
 
-*Register the event handler*
+*Register the event handler:*
 ````csharp
 _kcCommunicator.DigitalInput += HandleInput;
 ````
 
-*Handle the event (logging the input to the console output)*
+*Handle the event (logging the input to the console output):*
 ````csharp
 private void HandleInput(object oSender = null, DigitalInputEventArgs dieaEventArguments = null)
 {
