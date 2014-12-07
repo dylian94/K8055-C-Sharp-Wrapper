@@ -4,7 +4,7 @@ A C# Wrapper for the Velleman K8055 (SDK v4) DLL that uses events for digital an
 ##How to use
 1. Build the DLL.
 2. Add a reference to the DLL to your project.
-3. Download the Velleman K8055 (v4) SDK (http://www.velleman.eu/support/downloads/?code=K8055&type=9)
+3. [Download the Velleman K8055 (v4) SDK](http://www.velleman.eu/support/downloads/?code=K8055&type=9)
 4. Extract the K8055D.dll from the "DLL_v4.0.0.0" folder.
 5. Make 4 copies of the DLL file in your project folder and name like noted below*
     * K8055-1.dll
@@ -14,7 +14,7 @@ A C# Wrapper for the Velleman K8055 (SDK v4) DLL that uses events for digital an
 6. Add the DLL files to your project and change the associated property "Copy to Output Directory" to "Copy if newer" or "Copy always".
 7. Check the examples below to see how the DLL can be used.
 
-* Copying the DLL 4 times is needed to be able to connect to multiple devices at ones without having to open and close connections each time.
+\* Copying the dll file 4 times is needed to be able to connect to multiple devices at ones without having to open and close connections each time.
 
 ##Examples
 ###Connecting to devices
