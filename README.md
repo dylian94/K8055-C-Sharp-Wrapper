@@ -95,6 +95,7 @@ kcCommunicator.AddDigitalOutput(0, 1, true);
 ####Adding multiple digital outputs to the queue
 
 #####Method one:
+You can add many outputs as you want, they are added to the queue in the same order as they are added to the list.
 ````csharp
 kcCommunicator.AddDigitalOutput(new List<DigitalIO>()
 {
@@ -111,6 +112,12 @@ kcCommunicator.AddDigitalOutput(new List<DigitalIO>()
       Value = false
    }
 });
+````
+
+#####Method two:
+The second parameter accepts a boolean array with a max size of 8 (the number of ports). The index in the array is mapped to the ports on the device, if you only pass an array with a size of 3 only the values of the first 3 ports will be changed.
+````csharp
+kcCommunicator.AddDigitalOutput(0, new bool?[4] { false, true, false, false });
 ````
 
 __*MORE COMMING SOON*__
