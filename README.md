@@ -2,20 +2,18 @@
 A C# Wrapper for the Velleman K8055 (SDK v4) DLL that uses events for digital and analog input and a job queue for digital and analog output. Build to be used with WPF, not tested with Windows Forms.
 
 ##Table of Contents
-
-- [K8055 C# Wrapper](#)
-	- [How to use](#)
-	- [Examples](#)
-		- [Connecting to devices](#)
-		- [Listening for connection errors](#)
-		- [Listening for Digital input](#)
-		- [Adding Digital output to the output queue](#)
-			- [Adding a single digital output to the queue](#)
-				- [Method one:](#)
-				- [Method two](#)
-			- [Adding multiple digital outputs to the queue](#)
-				- [Method one:](#)
-				- [Method two:](#)
+- [How to use](#)
+- [Examples](#)
+	- [Connecting to devices](#)
+	- [Listening for connection errors](#)
+	- [Listening for Digital input](#)
+	- [Adding Digital output to the output queue](#)
+		- [Adding a single digital output to the queue](#)
+			- [Method one:](#)
+			- [Method two](#)
+		- [Adding multiple digital outputs to the queue](#)
+			- [Method one:](#)
+			- [Method two:](#)
 
 ##How to use
 1. Build the DLL.
