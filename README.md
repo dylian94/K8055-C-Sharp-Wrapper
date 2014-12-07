@@ -65,10 +65,52 @@ private void HandleInput(object oSender = null, DigitalInputEventArgs dieaEventA
 ````
 
 ###Adding Digital output to the output queue
+> **WARNING:** Make sure you have called the `StartCommunication()` method to open the connection
+> to the device before trying to write to any of its digital outputs.
+>
 > **NOTE:** There are multiple overloads of the `AddDigitalOutput()` method. You can use
 > wichever one you prefer, all overloads add the digital output as individual (per channel)
 > outputs to the queue. The output is written to the device one channel at a time (the 
-> current version of the library does not use the K8055 SDK provided `WriteAllDigital()` method.
+> current version of the library does not use the K8055 SDK provided `WriteAllDigital()` method). 
 
-**Adding a single digital output to the queue**  
+####Adding a single digital output to the queue
+In the current version of the library all methods that add digital output to the queue use "Method one" eventually even the methods that add multiple digital values.
+
+#####Method one:
+````csharp
+kcCommunicator.AddDigitalOutput(new DigitalIO()
+{
+   Device = 0,
+   Port = 1,
+   Value = true
+});
+````
+
+#####Method two
+A more straightforward method that calls the above method eventually.
+````csharp
+kcCommunicator.AddDigitalOutput(0, 1, true);
+````
+
+####Adding multiple digital outputs to the queue
+
+#####Method one:
+````csharp
+kcCommunicator.AddDigitalOutput(new List<DigitalIO>()
+{
+   new DigitalIO()
+   {
+      Device = 0,
+      Port = 1,
+      Value = true
+   },
+   new DigitalIO()
+   {
+      Device = 0,
+      Port = 2,
+      Value = false
+   }
+});
+````
+
 __*MORE COMMING SOON*__
