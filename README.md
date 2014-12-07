@@ -9,11 +9,11 @@ A C# Wrapper for the Velleman K8055 (SDK v4) DLL that uses events for digital an
 	- [Listening for Digital input](#listening-for-digital-input)
 	- [Adding Digital output to the output queue](#adding-digital-output-to-the-output-queue)
 		- [Adding a single digital output to the queue](#adding-a-single-digital-output-to-the-queue)
-			- [Method one:](#method-one)
+			- [Method one](#method-one)
 			- [Method two](#method-two)
 		- [Adding multiple digital outputs to the queue](#adding-multiple-digital-outputs-to-the-queue)
-			- [Method one:](#method-one-1)
-			- [Method two:](#method-two-2)
+			- [Method one](#method-one-1)
+			- [Method two](#method-two-1)
 
 ##How to use
 1. Build the DLL.
@@ -100,7 +100,7 @@ kcCommunicator.AddDigitalOutput(new DigitalIO()
 });
 ````
 
-#####Method two
+#####Method two:
 A more straightforward method that calls the above method eventually.
 ````csharp
 kcCommunicator.AddDigitalOutput(0, 1, true);
