@@ -4,7 +4,17 @@ A C# Wrapper for the Velleman K8055 (SDK v4) DLL that uses events for digital an
 ##How to use
 1. Build the DLL.
 2. Add a reference to the DLL to your project.
-3. Check the examples below to see how the DLL can be used.
+3. Download the Velleman K8055 (v4) SDK (http://www.velleman.eu/support/downloads/?code=K8055&type=9)
+4. Extract the K8055D.dll from the "DLL_v4.0.0.0" folder.
+5. Make 4 copies of the DLL file in your project folder and name like noted below*
+    * K8055-1.dll
+    * K8055-2.dll
+    * K8055-3.dll
+    * K8055-4.dll
+6. Add the DLL files to your project and change the associated property "Copy to Output Directory" to "Copy if newer" or "Copy always".
+7. Check the examples below to see how the DLL can be used.
+
+* Copying the DLL 4 times is needed to be able to connect to multiple devices at ones without having to open and close connections each time.
 
 ##Examples
 ###Connecting to devices
@@ -35,7 +45,7 @@ private void HandleDeviceConnectionError(object oSender, EventArgs eaEventArgume
 ````
 
 ###Listening for Digital input
-> **NOTE:** This event is triggered for input on all devices you'll need 
+> **NOTE:** This event is triggered for input on all devices, you will need 
 > to check the event arguments to check wich device triggered the event.
 
 *Register the event handler:*
@@ -53,3 +63,12 @@ private void HandleInput(object oSender = null, DigitalInputEventArgs dieaEventA
     Console.WriteLine("Value: " + dieaEventArguments.Input.Value.ToString());
 }
 ````
+
+###Adding Digital output to the output queue
+> **NOTE:** There are multiple overloads of the `AddDigitalOutput()` method. You can use
+> wichever one you prefer, all overloads add the digital output as individual (per channel)
+> outputs to the queue. The output is written to the device one channel at a time (the 
+> current version of the library does not use the K8055 SDK provided `WriteAllDigital()` method.
+
+**Adding a single digital output to the queue**
+__*MORE COMMING SOON*__
